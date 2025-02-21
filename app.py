@@ -55,7 +55,7 @@ def insert_data(firstName, lastName, title, email, phone, age, message):
     if connection:
         try:
             cursor = connection.cursor()
-            sql = 'INSERT INTO Contacts (firstName, lastName, title,email, phone, age, message) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+            sql = 'INSERT INTO Contacts (firstName, lastName, title, email, phone, age, message) VALUES (%s, %s, %s, %s, %s, %s, %s)'
             cursor.execute(sql, (firstName, lastName, title,email, phone, age, message))
             connection.commit()
             cursor.close()
@@ -125,7 +125,7 @@ st.subheader("Database Records")
 connection = create_connection()
 if connection:
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM Contacts")
+    cursor.execute("SELECT * FROM Users")
     rows = cursor.fetchall()
     cursor.close()
     connection.close()
