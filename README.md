@@ -1,6 +1,6 @@
 Steps to create a connection between EC2 instance and GIT bash.
 
-1. Create EC2 instance in AWS EC2.
+1. Create an EC2 instance in AWS EC2.
 2. Copy Key.pem to your working folder.
    
    Ex: streamlit-app.pem
@@ -10,7 +10,7 @@ Steps to create a connection between EC2 instance and GIT bash.
 4. If the file is in a GitHub repository, you can SSH into your EC2 instance and clone the repo directly:
 
 		e.g., git clone https://github.com/yourusername/your-repo.git
-5. Once check all files/ folder colned or not using this command:
+5. Once check all files/ folder cloned or not using this command:
 
 		ls
 6. Now you can see all files/ Folders. Change directory to your required Repository folder. Using this command
@@ -19,10 +19,10 @@ Steps to create a connection between EC2 instance and GIT bash.
 7. Update once your Instance
 
 		sudo apt update
-8. Now check once python version. if python already existing upgrade it otherwise install python :
+8. Now check the python version. if python already existing upgrade it otherwise install python :
 
 		sudo apt install python3.12-venv -y
-9. Check once again python version. It's show downloaded python version.
+9. Check once again the python version. It's shows the downloaded python version.
 
 		python3 --version
 10. Creating a virtual environment helps keep dependencies isolated:
@@ -34,7 +34,7 @@ Steps to create a connection between EC2 instance and GIT bash.
 13. Check pip installed or not
 
 		pip --version
-14. If pip not installed use this command for installing pip.
+14. If pip is not installed use this command for installing pip.
 
 		sudo apt install -y python3-pip
 	already installed update it
@@ -43,7 +43,7 @@ Steps to create a connection between EC2 instance and GIT bash.
 15. Now install all required dependencies:
 
 		pip install -r requirements.txt
-	If in case above command not working, Install dependencies one by one.
+	If in case the above command is not working, Install dependencies one by one.
 
  		pip install streamlit
 16. To delete a file (e.g., app.py or requirments.txt), use:
