@@ -24,10 +24,11 @@ def create_table():
     if connection:
         cursor = connection.cursor()
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS Contacts (
+            CREATE TABLE IF NOT EXISTS Users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 firstName VARCHAR(100) NOT NULL,
                 lastName VARCHAR(100) NOT NULL,
+                title VARCHAR(100),
                 email VARCHAR(100) NOT NULL UNIQUE,
                 phone VARCHAR(20) NOT NULL,
                 age INT NOT NULL,
@@ -49,13 +50,13 @@ def is_valid_phone(phone):
     return re.match(phone_pattern, phone) is not None
 
 # Function to insert data into the table
-def insert_data(firstName, lastName, email, phone, age, message):
+def insert_data(firstName, lastName, title, email, phone, age, message):
     connection = create_connection()
     if connection:
         try:
             cursor = connection.cursor()
-            sql = 'INSERT INTO Contacts (firstName, lastName, email, phone, age, message) VALUES (%s, %s, %s, %s, %s, %s)'
-            cursor.execute(sql, (firstName, lastName, email, phone, age, message))
+            sql = 'INSERT INTO Contacts (firstName, lastName, title,email, phone, age, message) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+            cursor.execute(sql, (firstName, lastName, title,email, phone, age, message))
             connection.commit()
             cursor.close()
             connection.close()
@@ -74,6 +75,7 @@ with st.form("contact_form"):
     st.markdown("### **Enter Your Details**") 
     firstname = st.text_input('First Name :red[*] (required)')
     lastname = st.text_input('Last Name :red[*] (required)')
+    title = st.text_input('Title')
     email = st.text_input('Email :red[*] (required)')
     phone = st.text_input('Phone :red[*] (required)')
     age = st.number_input('Age :red[*] (required)', min_value=18, step=1)
@@ -112,7 +114,7 @@ with st.form("contact_form"):
             st.error('Please enter your Age')        
             st.stop()
             
-        success = insert_data(firstname, lastname, email, phone, int(age), message )
+        success = insert_data(firstname, lastname, title, email, phone, int(age), message )
         if success:
             st.success('Data inserted successfully')
         else:
@@ -128,7 +130,7 @@ if connection:
     cursor.close()
     connection.close()
     if rows:
-        columns = ["ID", "First Name", "Last Name", "Email", "Phone", "Age", "Message"]
+        columns = ["ID", "First Name", "Last Name", "Title", "Email", "Phone", "Age", "Message"]
         df = pd.DataFrame(rows, columns=columns)
         df_with_index = df.set_index("ID")
         st.write(df_with_index)
